@@ -1,6 +1,7 @@
 .build/
 .swiftpm/
-BadgeKartBridge
+/BadgeKartBridge
+/BadgeKartBridge.app
 *.log
 .DS_Store
 
