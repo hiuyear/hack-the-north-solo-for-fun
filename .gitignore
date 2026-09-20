@@ -1,8 +1,18 @@
 .build/
 .swiftpm/
-BadgeKartBridge
+/BadgeKartBridge
+/BadgeKartBridge.app
 *.log
 .DS_Store
+
+# Private Codex project context
+tasks/
+learn.md
+tracker.md
+AGENTS.md
+CLAUDE.md
+CODEX.md
+codex.md
 
 # Private Codex project context
 tasks/

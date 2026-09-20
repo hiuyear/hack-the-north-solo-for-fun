@@ -18,23 +18,23 @@ Make one or two 2026 Hacker Badges work as wired USB controllers for local Super
 Already implemented:
 
 - complete IDE-importable Lua controller: `badge-controller/kart-controller.lua`;
-- native Swift USB-serial-to-keyboard bridge for up to two badges;
+- native Swift USB-serial-to-keyboard bridge for up to two badges (`Sources/BadgeKartBridge`);
 - distinct Player 1 and Player 2 keyboard mappings;
 - shake-to-nitro event with a cooldown and short Mac key pulse;
 - held-button heartbeat to repair stuck inputs;
 - automatic `/dev/cu.usbmodem*` discovery;
-- macOS Accessibility permission prompt;
-- `start.command` launcher;
-- parser tests and a two-player simulation mode;
+- macOS Accessibility prompt **and** a stable `.app` so it can be added with **+**;
+- `start.command` installs `~/Applications/BadgeKartBridge.app` (`com.hiuyear.BadgeKartBridge`) and launches it with `open`;
+- parser tests, mapping tests, and a two-player simulation mode;
 - setup instructions in `README.md`.
 
-Verified on the Mac:
+Accessibility blocker (why the app was invisible): a rebuilt unsigned binary launched from Terminal is a Terminal child. TCC can show a prompt without listing `BadgeKartBridge`. Add `~/Applications/BadgeKartBridge.app` with the **+** button.
 
-- `swift test`: 3 tests pass with 0 failures;
-- `swift build -c release`: succeeds;
-- `BadgeKartBridge --demo`: both player mappings produce the expected presses and releases, including nitro release;
-- a badge serial device currently appears as `/dev/cu.usbmodem101`;
-- SuperTuxKart is not installed yet.
+`.gitignore` used to ignore any path named `BadgeKartBridge`, which hid `Sources/BadgeKartBridge` from git. It now only ignores the root binary and `.app`.
+
+Verified earlier on the Mac (previous local session, not this cloud VM): `swift test` passed, `swift build -c release` succeeded, `--demo` released both BOOST keys, a badge appeared as `/dev/cu.usbmodem*` (101 or 1101), and the Accessibility prompt appeared. The checkbox was missing because of the identity issue above.
+
+Not yet proven from this checkout: physical one-badge DOWN/UP log. SuperTuxKart is not installed; stop before that increment.
 
 ## Architecture
 

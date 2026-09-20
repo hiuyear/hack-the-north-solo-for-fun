@@ -15,6 +15,7 @@ final class ControllerMessageTests: XCTestCase {
             ControllerMessage.parse("KART1|HEARTBEAT|10|128|1500"),
             .heartbeat(sequence: 10, heldMask: 128, uptimeMS: 1500)
         )
+        XCTAssertEqual(ControllerMessage.parse("KART1|READY|3"), .ready(sequence: 3))
     }
 
     func testRejectsMalformedOrOutOfRangeMessages() {
